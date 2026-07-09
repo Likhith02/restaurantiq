@@ -1,0 +1,23 @@
+# Render blueprint — deploys the web app + a free PostgreSQL database in one click.
+# In Render: New → Blueprint → pick this repo, and it reads this file.
+
+databases:
+  - name: restaurantiq-db
+    plan: free
+
+services:
+  - type: web
+    name: restaurantiq
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: RIQ_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: restaurantiq-db
+          property: connectionString

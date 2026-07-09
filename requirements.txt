@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+anthropic
+PyJWT
+psycopg[binary]

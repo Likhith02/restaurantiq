@@ -1,0 +1,272 @@
+/* RestaurantIQ — clean, calm, big type. Mobile-first. */
+
+:root {
+  --bg: #F6F7F5;
+  --card: #FFFFFF;
+  --ink: #1E2A26;
+  --ink-soft: #5C6B65;
+  --accent: #16735A;
+  --accent-soft: #E3F1EC;
+  --good: #1B8A5A;
+  --good-bg: #E5F5EC;
+  --watch: #B97D10;
+  --watch-bg: #FBF1DC;
+  --act: #C5443C;
+  --act-bg: #FBE7E5;
+  --line: #E4E8E5;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(20, 40, 33, 0.07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- shared ---------- */
+
+h1 { font-size: 30px; letter-spacing: -0.5px; }
+h2 { font-size: 23px; letter-spacing: -0.3px; }
+h3 { font-size: 18px; }
+
+.screen, .page { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+
+.field-label {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  margin: 18px 0 6px;
+}
+.opt { color: var(--ink-soft); font-weight: 400; font-size: 13px; }
+.req {
+  color: var(--accent); font-weight: 600; font-size: 12px;
+  background: var(--accent-soft); border-radius: 6px; padding: 1px 7px; margin-left: 4px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+  outline: none;
+}
+input:focus, select:focus { border-color: var(--accent); }
+
+.btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.05s ease;
+}
+.btn:active { transform: scale(0.985); }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.small { width: auto; margin: 0; padding: 12px 20px; font-size: 16px; border-radius: 12px; }
+
+.hint { font-size: 14px; color: var(--ink-soft); margin-top: 10px; }
+.hint.center { text-align: center; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.card-title { margin-bottom: 12px; }
+
+/* ---------- login ---------- */
+
+.login-wrap { padding-top: 12vh; text-align: center; }
+.logo { font-size: 52px; margin-bottom: 10px; }
+.tagline { color: var(--ink-soft); margin: 10px 0 34px; }
+.login-wrap .field-label { text-align: left; }
+#otp { text-align: center; letter-spacing: 8px; font-size: 26px; }
+
+/* ---------- setup ---------- */
+
+.sub { color: var(--ink-soft); margin-top: 4px; }
+.pill-row { display: flex; gap: 8px; }
+.pill {
+  flex: 1;
+  padding: 12px 8px;
+  font-size: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+.pill.selected { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+/* ---------- app shell ---------- */
+
+#screen-app { max-width: 480px; margin: 0 auto; padding: 0 16px 92px; }
+
+.app-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 4px 14px;
+}
+.greet { color: var(--ink-soft); font-size: 14px; }
+.icon-btn {
+  border: none; background: var(--card); box-shadow: var(--shadow);
+  width: 40px; height: 40px; border-radius: 12px; font-size: 18px; cursor: pointer;
+}
+
+/* ---------- home ---------- */
+
+.hero { text-align: center; padding: 26px 20px; }
+.hero-label { color: var(--ink-soft); font-size: 15px; }
+.hero-number { font-size: 44px; font-weight: 700; letter-spacing: -1px; margin: 4px 0; }
+.hero-sub { font-size: 15px; color: var(--ink-soft); }
+.hero-sub .up { color: var(--good); font-weight: 600; }
+.hero-sub .down { color: var(--act); font-weight: 600; }
+
+.lights { display: flex; gap: 12px; margin-bottom: 14px; }
+.light {
+  flex: 1;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+.light .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.light.good { background: var(--good-bg); } .light.good .dot { background: var(--good); }
+.light.watch { background: var(--watch-bg); } .light.watch .dot { background: var(--watch); }
+.light.act { background: var(--act-bg); } .light.act .dot { background: var(--act); }
+.light .l-label { font-weight: 600; font-size: 15px; }
+.light .l-line { font-size: 13.5px; color: var(--ink-soft); margin-top: 2px; }
+
+.insight {
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  background: var(--card);
+  border-left: 5px solid var(--line);
+}
+.insight.act { border-left-color: var(--act); }
+.insight.watch { border-left-color: var(--watch); }
+.insight.good { border-left-color: var(--good); }
+.insight .i-title { font-weight: 700; margin-bottom: 6px; }
+.insight .i-detail { font-size: 15.5px; color: var(--ink); }
+.insight .i-action {
+  margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--accent);
+}
+.insight .i-action::before { content: "→ "; }
+
+.empty { text-align: center; padding: 34px 22px; }
+.big-emoji { font-size: 44px; margin-bottom: 8px; }
+.empty p { color: var(--ink-soft); margin-top: 8px; }
+
+/* ---------- chart ---------- */
+
+.chart { display: flex; align-items: flex-end; gap: 4px; height: 120px; }
+.bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+.bar { width: 100%; border-radius: 5px 5px 0 0; background: var(--accent); opacity: 0.85; min-height: 2px; }
+.bar.weekend { background: #0E5A46; }
+.bar-day { font-size: 10px; color: var(--ink-soft); margin-top: 5px; }
+
+/* ---------- ask ---------- */
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 14.5px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.chip:active { background: var(--accent-soft); }
+
+.chat { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.msg {
+  max-width: 88%;
+  padding: 13px 16px;
+  border-radius: 16px;
+  font-size: 15.5px;
+  white-space: pre-wrap;
+}
+.msg.bot { background: var(--card); box-shadow: var(--shadow); align-self: flex-start; border-bottom-left-radius: 5px; }
+.msg.user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 5px; }
+.msg.thinking { color: var(--ink-soft); font-style: italic; }
+
+.ask-bar {
+  position: fixed;
+  bottom: 70px; left: 0; right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg);
+}
+.ask-bar input { flex: 1; }
+#tab-ask { padding-bottom: 150px; }
+
+/* ---------- bottom nav ---------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: 6px 0 max(8px, env(safe-area-inset-bottom));
+}
+.nav-btn {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 0;
+}
+.nav-btn.active { color: var(--accent); }
+.nav-ico { font-size: 21px; }
+
+/* ---------- toast ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 90px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  z-index: 50;
+  max-width: 90%;
+  text-align: center;
+}

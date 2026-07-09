@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RestaurantIQ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== LOGIN ========== -->
+<section id="screen-login" class="screen">
+  <div class="login-wrap">
+    <div class="logo">🍽️</div>
+    <h1>RestaurantIQ</h1>
+    <p class="tagline">See how your restaurant is really doing.<br>No computer skills needed.</p>
+
+    <div id="login-step-phone">
+      <label class="field-label" for="phone">Your phone number</label>
+      <input id="phone" type="tel" inputmode="numeric" placeholder="e.g. 98765 43210" autocomplete="tel">
+      <button class="btn primary" id="btn-get-code">Get my code</button>
+      <button class="btn ghost" id="btn-demo">Just show me a demo</button>
+    </div>
+
+    <div id="login-step-code" class="hidden">
+      <label class="field-label" for="otp">Enter the 6-digit code</label>
+      <input id="otp" type="text" inputmode="numeric" maxlength="6" placeholder="••••••">
+      <p class="hint" id="otp-hint"></p>
+      <button class="btn primary" id="btn-verify">Continue</button>
+      <button class="btn ghost" id="btn-back">Use a different number</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FIRST-TIME SETUP ========== -->
+<section id="screen-setup" class="screen hidden">
+  <div class="page">
+    <h2>Tell us about your place</h2>
+    <p class="sub">Just once — takes 30 seconds.</p>
+
+    <label class="field-label" for="setup-name">Restaurant name</label>
+    <input id="setup-name" type="text" placeholder="e.g. Annapurna Tiffins">
+
+    <label class="field-label" for="setup-type">What kind of place is it?</label>
+    <select id="setup-type">
+      <option>Family restaurant</option>
+      <option>Tiffin / breakfast place</option>
+      <option>Fast food / snacks</option>
+      <option>Cafe / bakery</option>
+      <option>Bar & restaurant</option>
+      <option>Cloud kitchen / delivery only</option>
+      <option>Other</option>
+    </select>
+
+    <label class="field-label" for="setup-seats">Roughly how many seats? <span class="opt">(optional)</span></label>
+    <input id="setup-seats" type="number" inputmode="numeric" placeholder="e.g. 40">
+
+    <label class="field-label">Your money symbol</label>
+    <div class="pill-row" id="setup-currency">
+      <button class="pill selected" data-cur="₹">₹ Rupee</button>
+      <button class="pill" data-cur="$">$ Dollar</button>
+      <button class="pill" data-cur="€">€ Euro</button>
+    </div>
+
+    <button class="btn primary" id="btn-setup-done">Let's go</button>
+  </div>
+</section>
+
+<!-- ========== MAIN APP ========== -->
+<main id="screen-app" class="hidden">
+
+  <!-- HOME -->
+  <section id="tab-home" class="tab">
+    <header class="app-head">
+      <div>
+        <p class="greet" id="greet">Hello!</p>
+        <h2 id="rest-name"></h2>
+      </div>
+      <button class="icon-btn" id="btn-logout" title="Log out">↩</button>
+    </header>
+
+    <div id="home-empty" class="card empty hidden">
+      <p class="big-emoji">📒</p>
+      <h3>Let's start with today</h3>
+      <p>Each evening, tell the app how the day went — it takes 30 seconds.
+         After a few days you'll start seeing what's working and what's costing you money.</p>
+      <button class="btn primary" id="btn-first-entry">Add today's numbers</button>
+    </div>
+
+    <div id="home-content" class="hidden">
+      <div class="card hero">
+        <p class="hero-label" id="hero-label">Yesterday's sales</p>
+        <p class="hero-number" id="hero-number">—</p>
+        <p class="hero-sub" id="hero-sub"></p>
+      </div>
+
+      <div class="lights" id="lights"></div>
+
+      <div id="top-insight"></div>
+
+      <div class="card">
+        <h3 class="card-title">Last 14 days</h3>
+        <div class="chart" id="chart"></div>
+      </div>
+
+      <div id="more-insights"></div>
+    </div>
+  </section>
+
+  <!-- ADD -->
+  <section id="tab-add" class="tab hidden">
+    <header class="app-head"><h2>Today's numbers</h2></header>
+    <div class="card">
+      <label class="field-label" for="e-date">Which day?</label>
+      <input id="e-date" type="date">
+
+      <label class="field-label" for="e-sales">How much did you earn? <span class="req">needed</span></label>
+      <input id="e-sales" type="number" inputmode="decimal" placeholder="Total sales for the day">
+
+      <label class="field-label" for="e-customers">How many customers came? <span class="opt">(rough guess is fine)</span></label>
+      <input id="e-customers" type="number" inputmode="numeric" placeholder="e.g. 85">
+
+      <label class="field-label" for="e-staff">How many staff worked?</label>
+      <input id="e-staff" type="number" inputmode="numeric" placeholder="e.g. 6">
+
+      <label class="field-label" for="e-staffcost">How much did staff cost today? <span class="opt">(wages for the day)</span></label>
+      <input id="e-staffcost" type="number" inputmode="decimal" placeholder="Total staff pay for the day">
+
+      <label class="field-label" for="e-foodcost">Groceries / ingredients bought today?</label>
+      <input id="e-foodcost" type="number" inputmode="decimal" placeholder="What you spent on supplies">
+
+      <button class="btn primary" id="btn-save-entry">Save</button>
+      <p class="hint center">Only sales is needed — add the rest when you can.<br>More details = smarter advice.</p>
+    </div>
+  </section>
+
+  <!-- ASK -->
+  <section id="tab-ask" class="tab hidden">
+    <header class="app-head"><h2>Ask anything</h2></header>
+    <div class="chips" id="chips">
+      <button class="chip">Why is my quiet day slow?</button>
+      <button class="chip">Are my staff costs OK?</button>
+      <button class="chip">How can I earn more?</button>
+    </div>
+    <div class="chat" id="chat">
+      <div class="msg bot">Hi! Ask me anything about your restaurant — in your own words, any language. I'll answer using your numbers.</div>
+    </div>
+    <div class="ask-bar">
+      <input id="ask-input" type="text" placeholder="Type your question…">
+      <button class="btn primary small" id="btn-ask">Ask</button>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-tab="home"><span class="nav-ico">🏠</span>Home</button>
+    <button class="nav-btn" data-tab="add"><span class="nav-ico">➕</span>Add today</button>
+    <button class="nav-btn" data-tab="ask"><span class="nav-ico">💬</span>Ask</button>
+  </nav>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
