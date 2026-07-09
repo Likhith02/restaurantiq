@@ -51,6 +51,22 @@ class AskBody(BaseModel):
     question: str
 
 
+# ---------- health ----------
+
+@app.get("/api/health")
+def health():
+    """Quick status check: is the app up, and is the AI key visible to it?"""
+    import os
+    key = os.environ.get("ANTHROPIC_API_KEY", "")
+    return {
+        "ok": True,
+        "database": "postgres" if db.IS_PG else "sqlite",
+        "ai_key_present": bool(key),
+        "ai_key_looks_valid": key.startswith("sk-ant-"),
+        "ai_ready": ai.available(),
+    }
+
+
 # ---------- auth ----------
 
 @app.post("/api/auth/request-otp")
