@@ -1,6 +1,6 @@
 ﻿# RestaurantIQ
 
-Simple restaurant analytics that anyone can use — no computer skills needed.
+Simple restaurant analytics that anyone can use, no computer skills needed.
 Phone-number login (OTP), 30-second daily entry, plain-language insights,
 and an AI advisor powered by Claude.
 
