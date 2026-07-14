@@ -17,7 +17,8 @@ if IS_PG:
     import psycopg
     from psycopg.rows import dict_row
 
-DB_PATH = Path(__file__).resolve().parent.parent / "restaurantiq.db"
+# RIQ_DB_PATH lets tests (and containers) relocate the SQLite file.
+DB_PATH = Path(os.environ.get("RIQ_DB_PATH") or Path(__file__).resolve().parent.parent / "restaurantiq.db")
 
 _ID = "SERIAL PRIMARY KEY" if IS_PG else "INTEGER PRIMARY KEY AUTOINCREMENT"
 _FLOAT = "DOUBLE PRECISION" if IS_PG else "REAL"

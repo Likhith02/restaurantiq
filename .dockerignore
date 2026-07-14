@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+__pycache__
+**/__pycache__
+*.pyc
+restaurantiq.db
+restaurantiq.db-*
+.env
+tests
+run.bat
+README.md
+docker-compose.yml
+render.yaml

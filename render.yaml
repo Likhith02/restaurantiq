@@ -10,6 +10,9 @@ services:
     name: restaurantiq
     runtime: python
     plan: free
+    # Deploys are triggered by the GitHub Actions pipeline (deploy hook)
+    # only after lint + tests pass — not on every raw push.
+    autoDeploy: false
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:

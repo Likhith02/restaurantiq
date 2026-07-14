@@ -3,3 +3,6 @@ __pycache__/
 restaurantiq.db
 restaurantiq.db-*
 .env
+.venv/
+.pytest_cache/
+.ruff_cache/

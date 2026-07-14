@@ -31,6 +31,43 @@ python -m uvicorn app.main:app --port 8010
 Without a key the Ask tab still works — it answers from the built-in
 rule-based insights.
 
+## Run it with Docker
+
+```
+docker compose up --build
+```
+
+This runs the app in a container against PostgreSQL — the same setup as
+production — instead of the local SQLite file. Open **http://localhost:8010**.
+
+## DevOps
+
+| Piece | File(s) |
+|---|---|
+| Container image (non-root, healthcheck) | `Dockerfile`, `.dockerignore` |
+| Local prod-like stack (app + PostgreSQL) | `docker-compose.yml` |
+| CI/CD pipeline (lint → test → build → deploy) | `.github/workflows/ci.yml` |
+| Infrastructure-as-code (Render blueprint) | `render.yaml` |
+| API test suite | `tests/` |
+
+**Pipeline flow:** every push and PR runs `ruff` (lint), `pytest` (15 API
+tests), and a Docker image build. On pushes to `main` that pass, the image is
+published to GitHub Container Registry (tagged `latest` + commit SHA) and a
+deploy hook triggers Render. Render's own auto-deploy is off
+(`autoDeploy: false`), so nothing reaches production without passing CI.
+
+One-time setup: in Render, copy the service's **Deploy Hook URL** (Settings →
+Deploy Hook) and add it as a GitHub Actions secret named
+`RENDER_DEPLOY_HOOK` (repo → Settings → Secrets and variables → Actions).
+
+Run the checks locally:
+
+```
+pip install -r requirements-dev.txt
+ruff check .
+pytest
+```
+
 ## What's inside
 
 | Piece | File(s) |
